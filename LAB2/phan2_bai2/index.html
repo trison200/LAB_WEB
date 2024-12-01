@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Máy Tính Cơ Bản</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Máy Tính Cơ Bản</h1>
+        <form id="calculatorForm">
+            <div class="mb-3">
+                <label for="number1" class="form-label">Số thứ nhất:</label>
+                <input type="number" class="form-control" id="number1" required>
+            </div>
+            <div class="mb-3">
+                <label for="number2" class="form-label">Số thứ hai:</label>
+                <input type="number" class="form-control" id="number2" required>
+            </div>
+            <div class="mb-3">
+                <label for="operation" class="form-label">Phép toán:</label>
+                <select class="form-select" id="operation" required>
+                    <option value="">Chọn phép toán</option>
+                    <option value="add">Cộng (+)</option>
+                    <option value="subtract">Trừ (-)</option>
+                    <option value="multiply">Nhân (×)</option>
+                    <option value="divide">Chia (÷)</option>
+                    <option value="power">Luỹ thừa (^)</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Tính toán</button>
+        </form>
+        <h2 class="mt-4">Kết quả: <span id="result">0</span></h2>
+    </div>
+
+    <script>
+        document.getElementById('calculatorForm').onsubmit = function (event) {
+            event.preventDefault(); // Ngăn không cho form submit
+
+            // Lấy giá trị từ input
+            const num1 = parseFloat(document.getElementById('number1').value);
+            const num2 = parseFloat(document.getElementById('number2').value);
+            const operation = document.getElementById('operation').value;
+
+            let result;
+
+            // Thực hiện phép toán
+            switch (operation) {
+                case 'add':
+                    result = num1 + num2;
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    break;
+                case 'divide':
+                    if (num2 === 0) {
+                        result = 'Không thể chia cho 0!';
+                    } else {
+                        result = num1 / num2;
+                    }
+                    break;
+                case 'power':
+                    result = Math.pow(num1, num2);
+                    break;
+                default:
+                    result = 'Chọn phép toán hợp lệ!';
+            }
+
+            // Hiển thị kết quả
+            document.getElementById('result').innerText = result;
+            window.alert(result);
+        };
+    </script>
+</body>
+</html>

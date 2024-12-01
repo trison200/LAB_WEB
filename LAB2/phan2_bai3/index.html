@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Đăng Ký Thành Viên</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Đăng Ký Thành Viên</h1>
+        <form id="registrationForm">
+            <div class="mb-3">
+                <label for="firstName" class="form-label">First Name:</label>
+                <input type="text" class="form-control" id="firstName" required>
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name:</label>
+                <input type="text" class="form-control" id="lastName" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="birthday" class="form-label">Birthday:</label>
+                <select class="form-select" id="birthday">
+                    <option value="" selected>-- Chọn ngày --</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <!-- Thêm các ngày khác -->
+                    <option value="31">31</option>
+                </select>
+                <select class="form-select mt-2" id="birthmonth">
+                    <option value="" selected>-- Chọn tháng --</option>
+                    <option value="1">Tháng 1</option>
+                    <option value="2">Tháng 2</option>
+                    <option value="3">Tháng 3</option>
+                    <!-- Thêm các tháng khác -->
+                    <option value="12">Tháng 12</option>
+                </select>
+                <select class="form-select mt-2" id="birthyear">
+                    <option value="" selected>-- Chọn năm --</option>
+                    <option value="2000">2000</option>
+                    <option value="1999">1999</option>
+                    <option value="1998">1998</option>
+                    <!-- Thêm các năm khác -->
+                    <option value="1980">1980</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Gender:</label><br>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Nam</label><br>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Nữ</label><br>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">Không xác định</label>
+            </div>
+            <div class="mb-3">
+                <label for="country" class="form-label">Country:</label>
+                <select class="form-select" id="country">
+                    <option value="Vietnam">Vietnam</option>
+                    <option value="Australia">Australia</option>
+                    <option value="United States">United States</option>
+                    <option value="India">India</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="about" class="form-label">About:</label>
+                <textarea class="form-control" id="about" rows="3" maxlength="10000"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </form>
+    </div>
+
+    <script>
+            document.getElementById('registrationForm').onsubmit = function (event) {
+            event.preventDefault(); 
+            // Lấy giá trị từ các trường
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const birthday = document.getElementById('birthday').value;
+            const birthmonth = document.getElementById('birthmonth').value;
+            const birthyear = document.getElementById('birthyear').value;
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const country = document.getElementById('country').value;
+            const about = document.getElementById('about').value;
+
+            // Kiểm tra dữ liệu
+            if (firstName.length < 2 || firstName.length > 30) {
+                alert('First name phải từ 2-30 ký tự!');
+                return;
+            }
+            if (lastName.length < 2 || lastName.length > 30) {
+                alert('Last name phải từ 2-30 ký tự!');
+                return;
+            }
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Email không đúng định dạng!');
+                return;
+            }
+            if (password.length < 2 || password.length > 30) {
+                alert('Password phải từ 2-30 ký tự!');
+                return;
+            }
+            if (!birthday || !birthmonth || !birthyear) {
+                alert('Vui lòng chọn ngày sinh!');
+                return;
+            }
+            if (!gender) {
+                alert('Vui lòng chọn giới tính!');
+                return;
+            }
+            if (about.length > 10000) {
+                alert('About không được quá 10000 ký tự!');
+                return;
+            }
+
+            // Nếu tất cả dữ liệu hợp lệ
+            alert('Complete!');
+        };
+    </script>
+</body>

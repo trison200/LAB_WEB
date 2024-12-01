@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máy Tính Cơ Bản</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center">Máy Tính Cơ Bản</h1>
+    <form action="calculator.php" method="post" class="mt-4">
+        <div class="form-group">
+            <input type="number" name="number1" class="form-control" placeholder="Nhập số thứ nhất" required>
+        </div>
+        <div class="form-group">
+            <input type="number" name="number2" class="form-control" placeholder="Nhập số thứ hai" required>
+        </div>
+        <div class="form-group">
+            <select name="operation" class="form-control" required>
+                <option value="+">Cộng</option>
+                <option value="-">Trừ</option>
+                <option value="*">Nhân</option>
+                <option value="/">Chia</option>
+                <option value="^">Lũy thừa</option>
+                <option value="inv">Nghịch đảo</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Tính Toán</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

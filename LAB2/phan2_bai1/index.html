@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Quản lý Bảng HTML</title>
+    <style>
+        #myTable {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Quản lý Bảng HTML</h1>
+        <button class="btn btn-primary" id="createTable">Tạo Bảng 2x2</button>
+        <button class="btn btn-success" id="addRow">Thêm Hàng</button>
+        <button class="btn btn-info" id="addColumn">Thêm Cột</button>
+        <button class="btn btn-danger" id="removeRow">Xoá Hàng</button>
+        <button class="btn btn-warning" id="removeColumn">Xoá Cột</button>
+        <button class="btn btn-secondary" id="clearTable">Xoá Toàn Bộ Bảng</button>
+
+        <div class="mt-3">
+            <input type="number" id="rowIndex" placeholder="Chỉ số hàng" class="form-control" min="0">
+            <input type="number" id="colIndex" placeholder="Chỉ số cột" class="form-control mt-2" min="0">
+        </div>
+
+        <table class="table table-bordered" id="myTable"></table>
+    </div>
+
+    <script>
+        const myTable = document.getElementById('myTable');
+
+        // Tạo bảng 2x2
+        document.getElementById('createTable').onclick = function () {
+            myTable.innerHTML = ''; // Xoá nội dung bảng
+            for (let i = 0; i < 2; i++) {
+                const row = myTable.insertRow();
+                for (let j = 0; j < 2; j++) {
+                    const cell = row.insertCell();
+                    cell.textContent = `Hàng ${i + 1}, Cột ${j + 1}`;
+                }
+            }
+        };
+
+        // Thêm hàng
+        document.getElementById('addRow').onclick = function () {
+            const row = myTable.insertRow();
+            const colCount = myTable.rows[0].cells.length;
+            for (let j = 0; j < colCount; j++) {
+                const cell = row.insertCell();
+                cell.textContent = `Hàng ${myTable.rows.length}, Cột ${j + 1}`;
+            }
+        };
+
+        // Thêm cột
+        document.getElementById('addColumn').onclick = function () {
+            const rowCount = myTable.rows.length;
+            for (let i = 0; i < rowCount; i++) {
+                const cell = myTable.rows[i].insertCell();
+                cell.textContent = `Hàng ${i + 1}, Cột ${myTable.rows[i].cells.length}`;
+            }
+        };
+
+        // Xoá hàng
+        document.getElementById('removeRow').onclick = function () {
+            const index = parseInt(document.getElementById('rowIndex').value);
+            if (index >= 0 && index < myTable.rows.length) {
+                myTable.deleteRow(index);
+            } else {
+                alert('Chỉ số hàng không hợp lệ!');
+            }
+        };
+
+        // Xoá cột
+        document.getElementById('removeColumn').onclick = function () {
+            const index = parseInt(document.getElementById('colIndex').value);
+            const rowCount = myTable.rows.length;
+            if (index >= 0 && rowCount > 0 && index < myTable.rows[0].cells.length) {
+                for (let i = 0; i < rowCount; i++) {
+                    myTable.rows[i].deleteCell(index);
+                }
+            } else {
+                alert('Chỉ số cột không hợp lệ!');
+            }
+        };
+
+        // Xoá toàn bộ bảng
+        document.getElementById('clearTable').onclick = function () {
+            myTable.innerHTML = '';
+        };
+    </script>
+</body>
+</html>
